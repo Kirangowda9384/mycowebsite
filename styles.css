@@ -1,18 +1,19 @@
 /* =========================================
-   CSS Reset & Variables
+   CSS Reset & Variables (Premium Earthy Green Theme)
 ========================================= */
 :root {
-  /* Dark, Earthy, Premium Palette */
-  --bg-primary: #0a0908;
-  --bg-secondary: #141210;
-  --bg-tertiary: #1e1b18;
+  /* Dark Forest, Earthy, Premium Palette */
+  --bg-primary: #08120a;
+  --bg-secondary: #0d1a10;
+  --bg-tertiary: #142416;
   
-  --text-primary: #f2efe9;
-  --text-secondary: #a8a096;
+  --text-primary: #eef2eb;
+  --text-secondary: #a3b8a6;
   
   --accent-gold: #cba365;
   --accent-hover: #b38b4d;
-  --accent-muted: rgba(203, 163, 101, 0.15);
+  --accent-green: #2e5936;
+  --accent-muted: rgba(46, 89, 54, 0.2);
   
   --border-color: rgba(255, 255, 255, 0.08);
   
@@ -74,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 14px 32px;
   font-family: var(--font-heading);
   font-weight: 500;
   font-size: 1rem;
@@ -97,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary {
-  background-color: rgba(20, 18, 16, 0.8);
+  background-color: rgba(13, 26, 16, 0.8);
   color: var(--text-primary);
   backdrop-filter: blur(4px);
   border: 1px solid var(--accent-gold);
@@ -123,7 +124,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar.scrolled {
-  background: rgba(10, 9, 8, 0.95);
+  background: rgba(8, 18, 10, 0.95);
   backdrop-filter: blur(10px);
   padding: 15px 0;
   border-bottom: 1px solid var(--border-color);
@@ -138,14 +139,26 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 5%;
 }
 
-.logo {
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+  border-radius: 50%; /* Optional styling for the logo */
+}
+
+.logo-text {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
-.logo span {
+.logo-text span {
   color: var(--accent-gold);
   font-weight: 300;
 }
@@ -178,41 +191,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.cart-btn {
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  cursor: pointer;
-  position: relative;
-  transition: color var(--transition-fast);
-}
-
-.cart-btn:hover {
-  color: var(--accent-gold);
-}
-
-.cart-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: var(--accent-gold);
-  color: var(--bg-primary);
-  font-size: 0.7rem;
-  font-weight: 700;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -232,18 +210,16 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   position: relative;
   padding: 0 5%;
-  /* Fallback dark background */
   background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
   overflow: hidden;
 }
 
-/* Dynamic subtle background element */
 .hero::before {
   content: '';
   position: absolute;
-  width: 60vw;
-  height: 60vw;
-  background: radial-gradient(circle, rgba(203, 163, 101, 0.05) 0%, transparent 60%);
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, rgba(74, 222, 128, 0.05) 0%, transparent 60%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -258,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-content h1 {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   margin-bottom: 20px;
   background: linear-gradient(to right, #fff, var(--accent-gold));
   -webkit-background-clip: text;
@@ -267,16 +243,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-content p {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
   color: var(--text-secondary);
   margin-bottom: 40px;
-  max-width: 600px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
 /* =========================================
-   Sections
+   Sections General
 ========================================= */
 section {
   padding: 100px 0;
@@ -296,66 +278,122 @@ section {
 .section-header p {
   color: var(--text-secondary);
   font-size: 1.1rem;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 /* =========================================
-   Benefits Section
+   Emotional Intro Section
 ========================================= */
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-}
-
-.benefit-card {
+.intro {
   background-color: var(--bg-secondary);
-  padding: 40px 30px;
-  border-radius: 8px;
   text-align: center;
-  border: 1px solid var(--border-color);
-  transition: transform var(--transition-normal), border-color var(--transition-fast);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.benefit-card:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent-gold);
+.intro-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.benefit-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 20px;
-  background-color: var(--accent-muted);
+.intro-content p.highlight {
+  font-size: 1.8rem;
   color: var(--accent-gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: var(--font-heading);
+  margin-bottom: 30px;
+  line-height: 1.4;
 }
 
-.benefit-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-}
-
-.benefit-card p {
+.intro-content p {
+  font-size: 1.15rem;
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.intro-content p.strong {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-top: 40px;
 }
 
 /* =========================================
-   Products Section
+   Product Line Message & Ingredients
+========================================= */
+.ingredients {
+  background-color: var(--bg-primary);
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.ingredients-list {
+  background-color: var(--bg-tertiary);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.ingredients-list ul {
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+.ingredients-list li {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--text-primary);
+}
+
+.ingredients-list li::before {
+  content: '🌿';
+  font-size: 1.2rem;
+}
+
+.benefits-box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.benefit-item {
+  background-color: var(--bg-secondary);
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.benefit-item span.emoji {
+  font-size: 2.5rem;
+}
+
+.benefit-item h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+/* =========================================
+   Products Grid Section
 ========================================= */
 .products {
   background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
 .product-card {
@@ -364,16 +402,19 @@ section {
   overflow: hidden;
   border: 1px solid var(--border-color);
   transition: transform var(--transition-normal);
+  text-align: center;
 }
 
 .product-card:hover {
   transform: translateY(-5px);
+  border-color: var(--accent-gold);
 }
 
 .product-image {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  background-color: var(--bg-tertiary);
 }
 
 .product-image img {
@@ -387,167 +428,147 @@ section {
   transform: scale(1.05);
 }
 
-.product-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-}
-
-.product-card:hover .product-overlay {
-  opacity: 1;
-}
-
 .product-info {
   padding: 25px;
 }
 
-.product-category {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--accent-gold);
-  margin-bottom: 8px;
-  display: block;
-}
-
 .product-info h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-}
-
-.product-desc {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-}
-
-.product-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.price {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #fff;
+  font-size: 1.3rem;
+  color: var(--text-primary);
 }
 
 /* =========================================
-   About Section
+   Trust & Credibility Section
 ========================================= */
-.about {
-  position: relative;
-  background-image: linear-gradient(rgba(10, 9, 8, 0.85), rgba(10, 9, 8, 0.95));
+.trust {
+  background-color: var(--bg-primary);
   text-align: center;
-  padding: 120px 0;
 }
 
-.about-content {
-  max-width: 800px;
-  margin: 0 auto;
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
 }
 
-.about h2 {
-  font-size: 2.5rem;
+.trust-item {
+  background-color: var(--bg-tertiary);
+  padding: 40px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-muted);
+}
+
+.trust-item h3 {
   color: var(--accent-gold);
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
 }
 
-.about p {
-  font-size: 1.1rem;
+.trust-item p {
   color: var(--text-secondary);
-  margin-bottom: 20px;
 }
 
 /* =========================================
-   Footer
+   Why Choose Us & Mission
+========================================= */
+.why-us {
+  background-color: var(--bg-secondary);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.why-list ul {
+  list-style: none;
+}
+
+.why-list li {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.why-list li::before {
+  content: '✔';
+  color: var(--accent-gold);
+  font-weight: bold;
+}
+
+.mission-vision {
+  background-color: var(--bg-tertiary);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.mission-vision h3 {
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.mission-vision h3:first-child {
+  margin-top: 0;
+}
+
+.mission-vision p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+/* =========================================
+   Footer / CTA
 ========================================= */
 footer {
   background-color: var(--bg-tertiary);
-  padding: 80px 0 20px;
+  padding: 80px 0 30px;
   border-top: 1px solid var(--border-color);
+  text-align: center;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 40px;
+.cta-section {
   margin-bottom: 60px;
 }
 
-.footer-brand p {
-  margin-top: 20px;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  max-width: 300px;
+.cta-section h2 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 30px;
 }
 
-.footer-links h4 {
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.contact-info {
   font-size: 1.1rem;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-.footer-links ul li {
-  margin-bottom: 12px;
-}
-
-.footer-links a {
   color: var(--text-secondary);
-  font-size: 0.9rem;
 }
 
-.footer-links a:hover {
+.contact-info a {
   color: var(--accent-gold);
 }
 
-.footer-newsletter h4 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-}
-
-.footer-newsletter p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-}
-
-.newsletter-form {
-  display: flex;
-  gap: 10px;
-}
-
-.newsletter-form input {
-  flex: 1;
-  padding: 10px 15px;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  color: #fff;
-  font-family: var(--font-body);
-}
-
-.newsletter-form input:focus {
-  outline: none;
-  border-color: var(--accent-gold);
+.contact-info a:hover {
+  text-decoration: underline;
 }
 
 .footer-bottom {
-  text-align: center;
+  margin-top: 40px;
   padding-top: 20px;
   border-top: 1px solid var(--border-color);
   color: var(--text-secondary);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 /* =========================================
@@ -564,34 +585,12 @@ footer {
   transform: translateY(0);
 }
 
-.toast {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: var(--accent-gold);
-  color: var(--bg-primary);
-  padding: 12px 24px;
-  border-radius: 4px;
-  font-family: var(--font-heading);
-  font-weight: 500;
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
-  transition: all var(--transition-fast);
-  z-index: 2000;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* =========================================
    Responsive Design
 ========================================= */
 @media (max-width: 992px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
+  .ingredients-grid, .why-grid, .trust-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -617,16 +616,7 @@ footer {
     display: block;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-brand p {
-    margin: 15px auto;
-  }
-  
-  .newsletter-form {
+  .hero-buttons {
     flex-direction: column;
   }
 }
