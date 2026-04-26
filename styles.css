@@ -406,77 +406,115 @@ section {
   border: 1px solid var(--border-color);
 }
 
-.mushroom-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 25px;
-}
-
-.mushroom-chip {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--bg-secondary);
-  padding: 8px 20px 8px 8px;
-  border-radius: 40px;
-  border: 1px solid var(--border-color);
-  transition: all var(--transition-fast);
-}
-
-.mushroom-chip:hover {
-  border-color: var(--accent-gold);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-.chip-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--bg-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-.chip-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.mushroom-chip span {
-  font-size: 1rem;
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.benefits-box {
+.mushroom-feature-list {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-}
-
-.benefit-item {
-  background-color: var(--bg-secondary);
-  padding: 25px;
-  border-radius: 8px;
-  border-left: 4px solid var(--accent-gold);
-  display: flex;
-  align-items: center;
   gap: 20px;
 }
 
-.benefit-item span.emoji {
-  font-size: 2.5rem;
+.mushroom-feature-card {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background: var(--bg-tertiary);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.benefit-item h3 {
-  font-size: 1.3rem;
+.mushroom-feature-card:hover {
+  transform: translateX(10px);
+  border-color: var(--card-color);
+  box-shadow: -5px 0px 30px var(--card-glow);
+}
+
+.mf-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--card-color);
+  flex-shrink: 0;
+  background-color: var(--bg-primary);
+}
+
+.mf-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.mushroom-feature-card:hover .mf-img img {
+  transform: scale(1.1);
+}
+
+.mf-info {
+  text-align: left;
+}
+
+.mf-info h4 {
+  font-size: 1.4rem;
   color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.mf-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--card-glow);
+  color: var(--card-color);
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--card-color);
+}
+
+.mf-info p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Different Styles for Each Mushroom */
+.style-energy {
+  --card-color: #f59e0b; /* Amber */
+  --card-glow: rgba(245, 158, 11, 0.15);
+}
+.style-brain {
+  --card-color: #3b82f6; /* Blue */
+  --card-glow: rgba(59, 130, 246, 0.15);
+}
+.style-calm {
+  --card-color: #a855f7; /* Purple */
+  --card-glow: rgba(168, 85, 247, 0.15);
+}
+.style-glow {
+  --card-color: #ec4899; /* Pink */
+  --card-glow: rgba(236, 72, 153, 0.15);
+}
+.style-immunity {
+  --card-color: #10b981; /* Emerald Green */
+  --card-glow: rgba(16, 185, 129, 0.15);
+}
+
+@media (max-width: 600px) {
+  .mushroom-feature-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    padding: 25px 15px;
+  }
+  .mushroom-feature-card:hover {
+    transform: translateY(-5px);
+  }
+  .mf-info {
+    text-align: center;
+  }
 }
 
 /* =========================================
