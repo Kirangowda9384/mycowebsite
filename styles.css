@@ -588,6 +588,71 @@ section {
 }
 
 /* =========================================
+   Team Section
+========================================= */
+.team {
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.team-member {
+  background-color: var(--bg-tertiary);
+  padding: 40px 30px;
+  border-radius: 12px;
+  border: 1px solid var(--accent-muted);
+  text-align: left;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+}
+
+.team-member h3 {
+  font-size: 1.5rem;
+  color: var(--accent-gold);
+  margin-bottom: 5px;
+}
+
+.team-member .role {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.team-member .bio {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 25px;
+}
+
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-green);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.linkedin-link:hover {
+  color: var(--accent-gold);
+}
+
+/* =========================================
    Footer / CTA
 ========================================= */
 footer {
