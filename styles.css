@@ -2,18 +2,19 @@
    CSS Reset & Variables (Premium Earthy Green Theme)
 ========================================= */
 :root {
-  /* Dark Forest, Earthy, Premium Palette */
-  --bg-primary: #08120a;
-  --bg-secondary: #0d1a10;
-  --bg-tertiary: #142416;
+  /* Dark Forest & Deep Chocolate Earthy Premium Palette */
+  --bg-primary: #0a0e0a; /* Very dark forest green */
+  --bg-secondary: #131a12; /* Deep earthy green */
+  --bg-tertiary: #1b2419;
+  --bg-chocolate: #1a120d; /* Deep premium chocolate */
   
-  --text-primary: #eef2eb;
-  --text-secondary: #a3b8a6;
+  --text-primary: #f2f5ed; /* Soft natural off-white */
+  --text-secondary: #a8bba9; /* Muted sage green */
   
-  --accent-gold: #cba365;
-  --accent-hover: #b38b4d;
-  --accent-green: #2e5936;
-  --accent-muted: rgba(46, 89, 54, 0.2);
+  --accent-gold: #d4af37; /* Premium Gold */
+  --accent-hover: #b8962e;
+  --accent-green: #3a6b46;
+  --accent-muted: rgba(58, 107, 70, 0.2);
   
   --border-color: rgba(255, 255, 255, 0.08);
   
@@ -210,16 +211,32 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   position: relative;
   padding: 0 5%;
-  background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  /* Blending dark green and rich chocolate for that specific earthy feel */
+  background: radial-gradient(circle at top right, var(--bg-secondary) 0%, var(--bg-primary) 60%),
+              radial-gradient(circle at bottom left, var(--bg-chocolate) 0%, var(--bg-primary) 70%);
   overflow: hidden;
 }
 
 .hero::before {
   content: '';
   position: absolute;
-  width: 70vw;
-  height: 70vw;
-  background: radial-gradient(circle, rgba(74, 222, 128, 0.05) 0%, transparent 60%);
+  width: 100%;
+  height: 100%;
+  /* A subtle texture/noise overlay pattern to give it an organic, premium feel */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 80vw;
+  height: 80vw;
+  /* Gold/Earthy green soft glow in the center */
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.04) 0%, rgba(58, 107, 70, 0.06) 30%, transparent 70%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
