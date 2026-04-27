@@ -14,96 +14,50 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar mockup-nav">
+    <nav class="navbar">
         <div class="container nav-container">
             <a href="#home" class="logo">
                 <img src="assets/logo.jpeg" alt="MycoHaven Logo" class="nav-logo" onerror="this.style.display='none'">
-                <div class="logo-text">
-                    MycoHaven
-                    <span>Nature. Nourish. Thrive.</span>
-                </div>
+                MycoHaven
             </a>
             
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#products" class="dropdown">Products <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                <a href="#research">Research</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#blog">Blog</a>
-                <a href="#contact">Contact</a>
-            </div>
-
-            <div class="nav-actions">
-                <a href="#cart" class="cart-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                    <span class="cart-badge">2</span>
-                </a>
-                <a href="#shop" class="btn btn-shop">Shop Now</a>
+                <a href="#about">About</a>
+                <a href="#ingredients">Ingredients</a>
+                <a href="#products">Products</a>
+                <a href="#trust">Why Us</a>
             </div>
 
             <button class="mobile-menu-btn">☰</button>
         </div>
     </nav>
 
-    <header class="hero mockup-hero" id="home">
-        <!-- Spore Canvas -->
+    <header class="hero" id="home">
+        <!-- Spore Particle System -->
         <canvas id="sporeCanvas" class="hero-canvas"></canvas>
         
-        <div class="container hero-layout">
-            <div class="hero-content reveal active">
-                <span class="hero-badge">🌿 WELCOME TO MYCOHAVEN</span>
-                <h1 class="mockup-headline">Food That Heals.<br><span>Powered by<br>Medicinal Mushrooms.</span></h1>
-                <p>Organic, science-based foods and wellness products designed to support your health, energy, and everyday well-being.</p>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn btn-primary-light">Explore Products <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-                    <a href="#about" class="btn btn-outline-play">Learn More <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></a>
-                </div>
-            </div>
+        <!-- Cinematic glowing layers -->
+        <div class="hero-ambient-glow"></div>
+        <div class="hero-ambient-glow right"></div>
+
+        <!-- Floating Mushrooms from Soil -->
+        <div class="floating-mushrooms">
+            <div class="f-mush f-mush-1"><img src="assets/cordyceps.jpg" alt="Cordyceps"></div>
+            <div class="f-mush f-mush-2"><img src="assets/lions_mane.jpg" alt="Lion's Mane"></div>
+            <div class="f-mush f-mush-3"><img src="assets/reishi.jpg" alt="Reishi"></div>
+            <div class="f-mush f-mush-4"><img src="assets/shiitake.jpg" alt="Shiitake"></div>
+            <div class="f-mush f-mush-5"><img src="assets/turkey_tail.jpg" alt="Turkey Tail"></div>
         </div>
 
-        <!-- Glassmorphism Benefits Bar -->
-        <div class="benefits-bar-wrapper reveal">
-            <div class="container benefits-bar glass-card-dark">
-                <!-- 1 -->
-                <div class="b-item">
-                    <div class="b-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 12 12"></path></svg></div>
-                    <div class="b-text">
-                        <h4>100% Organic</h4>
-                        <p>Pure & natural ingredients</p>
-                    </div>
-                </div>
-                <!-- 2 -->
-                <div class="b-item">
-                    <div class="b-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></div>
-                    <div class="b-text">
-                        <h4>Immune Support</h4>
-                        <p>Strengthen your body naturally</p>
-                    </div>
-                </div>
-                <!-- 3 -->
-                <div class="b-item">
-                    <div class="b-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path></svg></div>
-                    <div class="b-text">
-                        <h4>Brain Health</h4>
-                        <p>Enhance focus & mental clarity</p>
-                    </div>
-                </div>
-                <!-- 4 -->
-                <div class="b-item">
-                    <div class="b-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
-                    <div class="b-text">
-                        <h4>Natural Energy</h4>
-                        <p>Boost stamina & reduce fatigue</p>
-                    </div>
-                </div>
-                <!-- 5 -->
-                <div class="b-item">
-                    <div class="b-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
-                    <div class="b-text">
-                        <h4>Overall Wellness</h4>
-                        <p>Supports mind, body & soul</p>
-                    </div>
+        <div class="container hero-container glass-card">
+            <div class="hero-content reveal active">
+                <span class="hero-badge">Premium Functional Nutrition</span>
+                <h1>Healthy Food That Works<br>Like <span>Medicine</span></h1>
+                <p>Blending nature and science to bring you food that not only tastes good but helps your body stay strong and healthy.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Contact Us</a>
+                    <a href="https://wa.me/919384399804" target="_blank" class="btn btn-secondary">WhatsApp</a>
                 </div>
             </div>
         </div>
