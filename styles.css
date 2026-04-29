@@ -213,8 +213,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   padding: 120px 0 60px; /* Accommodate navbar */
   overflow: hidden;
-  /* Deep forest floor color */
-  background: #040d08;
+  background: linear-gradient(#0f2e1c, #07140c);
 }
 
 /* Base soil/forest floor gradient */
@@ -334,7 +333,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
-/* Floating Mushrooms Simulation */
+/* Floating Mushrooms Simulation (Anti-gravity) */
 .floating-mushrooms {
   position: absolute;
   bottom: 0;
@@ -347,14 +346,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .f-mush {
   position: absolute;
-  bottom: -150px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid rgba(212, 175, 55, 0.3);
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.2), inset 0 0 10px rgba(212, 175, 55, 0.2);
-  animation: floatUp linear infinite;
+  animation: floatUp infinite ease-in-out;
   opacity: 0;
-  filter: brightness(0.8) contrast(1.2);
   background-color: #040d08;
 }
 
@@ -366,27 +363,22 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.8;
 }
 
-.f-mush-1 { left: 15%; width: 90px; height: 90px; animation-duration: 20s; animation-delay: 2s; }
-.f-mush-2 { left: 35%; width: 60px; height: 60px; animation-duration: 16s; animation-delay: 5s; }
-.f-mush-3 { left: 65%; width: 110px; height: 110px; animation-duration: 25s; animation-delay: 0s; }
-.f-mush-4 { left: 80%; width: 75px; height: 75px; animation-duration: 18s; animation-delay: 8s; }
-.f-mush-5 { left: 50%; width: 85px; height: 85px; animation-duration: 22s; animation-delay: 12s; }
+.f-mush-1 { left: 20%; bottom: 0; width: 80px; height: 80px; animation-duration: 9s; animation-delay: 0s; filter: blur(2px); }
+.f-mush-2 { left: 60%; bottom: -50px; width: 60px; height: 60px; animation-duration: 7s; animation-delay: 2s; filter: blur(1px); }
+.f-mush-3 { left: 40%; bottom: -80px; width: 100px; height: 100px; animation-duration: 12s; animation-delay: 1s; filter: blur(0px); z-index: 2; }
+.f-mush-4 { left: 80%; bottom: -30px; width: 70px; height: 70px; animation-duration: 10s; animation-delay: 4s; filter: blur(3px); }
+.f-mush-5 { left: 10%; bottom: -100px; width: 90px; height: 90px; animation-duration: 15s; animation-delay: 3s; filter: blur(1px); }
 
 @keyframes floatUp {
   0% {
-    bottom: -150px;
-    transform: translateX(0) rotate(0deg);
+    transform: translateY(0px) scale(0.8);
     opacity: 0;
   }
-  15% {
-    opacity: 0.7;
-  }
-  85% {
-    opacity: 0.7;
+  50% {
+    opacity: 0.8;
   }
   100% {
-    bottom: 110%;
-    transform: translateX(60px) rotate(45deg);
+    transform: translateY(-800px) scale(1.2);
     opacity: 0;
   }
 }
