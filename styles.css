@@ -933,3 +933,168 @@ footer {
     flex-direction: column;
   }
 }
+
+/* =========================================
+   Growth Cycle Animation Section
+========================================= */
+.growth-cycle {
+  background: #040d08;
+  position: relative;
+  overflow: hidden;
+}
+
+.growth-cycle::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.growth-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.growth-text h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: var(--accent-gold);
+}
+
+.growth-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.growth-stages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.g-stage {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  padding: 15px 25px;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  transition: all var(--transition-fast);
+}
+
+.g-stage:hover {
+  background: rgba(16, 185, 129, 0.1);
+  transform: translateX(10px);
+}
+
+.g-stage span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--accent-gold);
+  color: #000;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.growth-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.svg-container {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+.mushroom-grow-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* --- SVG Animations --- */
+
+/* 1. Soil appears */
+.anim-soil {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawSoil 2s ease-out forwards;
+}
+
+/* 2. Stem grows up */
+.anim-stem {
+  clip-path: inset(100% 0 0 0);
+  animation: growStem 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 1.5s; /* Wait for soil */
+}
+
+/* 3. Cap expands out */
+.anim-cap {
+  transform: scale(0);
+  opacity: 0;
+  transform-origin: 150px 150px;
+  animation: popCap 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation-delay: 3.5s; /* Wait for stem */
+}
+
+/* 4. Spores float continuously */
+.spore {
+  opacity: 0;
+  animation: floatSpore 4s linear infinite;
+}
+
+.sp1 { animation-delay: 5s; }
+.sp2 { animation-delay: 5.5s; animation-duration: 5s; }
+.sp3 { animation-delay: 6s; animation-duration: 3.5s; }
+.sp4 { animation-delay: 5.2s; animation-duration: 4.5s; }
+.sp5 { animation-delay: 5.8s; animation-duration: 6s; }
+.sp6 { animation-delay: 6.5s; animation-duration: 4s; }
+
+/* Keyframes */
+@keyframes drawSoil {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes growStem {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes popCap {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatSpore {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  20% { opacity: 0.8; transform: translateY(-20px) scale(1); }
+  80% { opacity: 0.5; transform: translateY(-80px) scale(1.2); }
+  100% {
+    transform: translateY(-120px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .growth-container {
+    grid-template-columns: 1fr;
+  }
+}
