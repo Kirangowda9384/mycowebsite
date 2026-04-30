@@ -288,16 +288,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-badge {
   display: inline-block;
-  padding: 8px 18px;
-  background: rgba(58, 107, 70, 0.2);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  color: #10b981;
-  border-radius: 30px;
+  padding: 8px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #d4af37;
+  border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 3px;
   margin-bottom: 30px;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
 }
 
 .hero-content {
@@ -305,29 +307,45 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-content h1 {
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  line-height: 1.1;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -1px;
   margin-bottom: 25px;
-  color: var(--text-primary);
+  color: #fff;
   font-weight: 600;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
 .hero-content h1 span {
-  color: var(--accent-gold);
+  display: block;
+  font-size: clamp(4.5rem, 8vw, 7rem);
+  background: linear-gradient(135deg, #d4af37, #fff, #d4af37);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+  font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-weight: 400;
-  font-family: serif;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+  margin-top: -10px;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .hero-content p {
-  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
-  color: var(--text-secondary);
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  color: #e2e8e4;
   margin-bottom: 40px;
-  max-width: 90%;
+  max-width: 700px;
   margin: 0 auto 40px;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+  font-weight: 300;
+  letter-spacing: 0.5px;
 }
 
 .hero-buttons {
