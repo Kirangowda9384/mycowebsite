@@ -498,14 +498,23 @@ section {
   background-color: var(--bg-primary);
 }
 
-.mf-img img {
+.logo-sprite {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-image: url('assets/mushroom_logos.png');
+  background-size: 500% 100%;
+  background-repeat: no-repeat;
   transition: transform var(--transition-normal);
+  background-color: white; /* In case logo background is transparent or we want a solid backdrop */
 }
 
-.mushroom-feature-card:hover .mf-img img {
+.logo-lions-mane { background-position: 0% 0; }
+.logo-cordyceps { background-position: 25% 0; }
+.logo-reishi { background-position: 50% 0; }
+.logo-turkey-tail { background-position: 75% 0; }
+.logo-shiitake { background-position: 100% 0; }
+
+.mushroom-feature-card:hover .logo-sprite {
   transform: scale(1.1);
 }
 
