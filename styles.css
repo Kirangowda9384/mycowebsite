@@ -268,9 +268,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glassmorphism Hero Card */
 .glass-card {
-  background: rgba(10, 20, 15, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(10, 20, 15, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
   padding: 60px 40px;
@@ -333,58 +333,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
-/* Floating Mushrooms Simulation (Anti-gravity) */
-.floating-mushrooms {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
 
-.f-mush {
-  position: absolute;
-  /* Removed borders and backgrounds to make the floating organic */
-  animation: floatUp infinite ease-in-out;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.f-mush img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  mix-blend-mode: screen;
-  opacity: 0.8;
-}
-
-.f-mush-1 { left: 20%; bottom: 0; width: 80px; height: 80px; animation-duration: 9s; animation-delay: 0s; filter: blur(2px); }
-.f-mush-2 { left: 60%; bottom: -50px; width: 60px; height: 60px; animation-duration: 7s; animation-delay: 2s; filter: blur(1px); }
-.f-mush-3 { left: 40%; bottom: -80px; width: 100px; height: 100px; animation-duration: 12s; animation-delay: 1s; filter: blur(0px); z-index: 2; }
-.f-mush-4 { left: 80%; bottom: -30px; width: 70px; height: 70px; animation-duration: 10s; animation-delay: 4s; filter: blur(3px); }
-.f-mush-5 { left: 10%; bottom: -100px; width: 90px; height: 90px; animation-duration: 15s; animation-delay: 3s; filter: blur(1px); }
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0px) translateX(0px) scale(0.8) rotate(0deg);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.9;
-  }
-  50% {
-    transform: translateY(-400px) translateX(30px) scale(1) rotate(15deg);
-  }
-  80% {
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateY(-800px) translateX(-20px) scale(1.2) rotate(-5deg);
-    opacity: 0;
-  }
-}
 
 /* Hero Visual (Image & Floating Animation) */
 .hero-visual {
