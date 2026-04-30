@@ -146,3 +146,8 @@ document.addEventListener("DOMContentLoaded", () => {
         animateParticles();
     }
 });
+
+// Global function for expandable cards
+window.toggleSubProducts = function(card) {
+    card.classList.toggle('expanded');
+};
