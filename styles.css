@@ -488,56 +488,25 @@ section {
   box-shadow: -5px 0px 30px var(--card-glow);
 }
 
-.mf-icon-wrapper {
+.mf-img {
   width: 90px;
   height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--card-color);
   flex-shrink: 0;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--bg-primary);
 }
 
-.mf-icon {
+.mf-img img {
   width: 100%;
   height: 100%;
-  fill: none;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
 }
 
-.icon-border {
-  stroke: var(--card-color);
-  opacity: 0.3;
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-  transition: stroke-dashoffset 1.5s ease-out;
-}
-
-.icon-path {
-  stroke: #fff;
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
-  transition: stroke-dashoffset 1s ease-out 0.5s;
-}
-
-.icon-detail {
-  stroke: var(--card-color);
-  stroke-width: 1.5;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  transition: stroke-dashoffset 0.8s ease-out 1s;
-}
-
-.reveal.active .icon-border,
-.reveal.active .icon-path,
-.reveal.active .icon-detail {
-  stroke-dashoffset: 0;
-}
-
-.mushroom-feature-card:hover .mf-icon {
-  transform: scale(1.1) rotate(5deg);
+.mushroom-feature-card:hover .mf-img img {
+  transform: scale(1.1);
 }
 
 .mf-info {
@@ -1111,6 +1080,34 @@ footer {
   justify-content: flex-start;
   transition: all var(--transition-normal);
   padding: 30px 20px;
+}
+
+.pc-logo-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pc-logo {
+  width: 100%;
+  height: 100%;
+  color: var(--accent-gold);
+}
+
+.logo-circle {
+  stroke: var(--accent-gold);
+  stroke-width: 1;
+  fill: rgba(212, 175, 55, 0.05);
+  stroke-dasharray: 300;
+  stroke-dashoffset: 0;
+}
+
+.product-card:hover .pc-logo {
+  transform: scale(1.1);
 }
 
 .expandable-card .product-info {
