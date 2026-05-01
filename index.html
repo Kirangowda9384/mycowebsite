@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css?v=1.3">
+    <link rel="stylesheet" href="styles.css?v=1.2">
 </head>
 <body>
     <nav class="navbar">
@@ -34,199 +34,295 @@
     </nav>
 
     <header class="hero" id="home">
-        <div class="hero-left">
-            <svg class="hero-logo-large" viewBox="0 0 100 100">
-                <path d="M50 10 L10 40 L10 90 L90 90 L90 40 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                <path d="M50 20 Q70 20 70 40 Q70 50 50 50 Q30 50 30 40 Q30 20 50 20" fill="currentColor" opacity="0.8"/>
-                <path d="M50 50 V80" stroke="currentColor" stroke-width="2"/>
-                <circle cx="35" cy="70" r="5" fill="currentColor" opacity="0.5"/>
-                <circle cx="65" cy="65" r="3" fill="currentColor" opacity="0.5"/>
-            </svg>
-            <h1 class="hero-brand-name">MycoHaven</h1>
-            <p class="hero-tagline">Nature for the modern mind.</p>
-            <p class="hero-desc-small">Functional mushroom products crafted for balance, focus, and modern wellness.</p>
-            
-            <div class="hero-icons-row">
-                <div class="hero-icon-item">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
-                    Natural
-                </div>
-                <div class="hero-icon-item">
-                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-                    Functional
-                </div>
-                <div class="hero-icon-item">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                    Balance
-                </div>
-                <div class="hero-icon-item">
-                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
-                    Sustainable
-                </div>
-            </div>
-        </div>
+        <!-- Spore Particle System -->
+        <canvas id="sporeCanvas" class="hero-canvas"></canvas>
         
-        <div class="hero-right">
-            <div class="hero-right-content reveal">
-                <h1>Elevated<br>wellness.</h1>
-                <p>Functional mushrooms. Real results.</p>
-                <a href="#products" class="btn btn-primary">Shop Now</a>
-            </div>
-            <div class="hero-product-display reveal" style="transition-delay: 0.2s">
-                <img src="assets/choco_bar.png" alt="MycoHaven Focus Chocolate">
+        <!-- Cinematic glowing layers -->
+        <div class="hero-ambient-glow"></div>
+        <div class="hero-ambient-glow right"></div>
+
+
+        <div class="container hero-container">
+            <div class="hero-content reveal active">
+                <span class="hero-badge">Premium Functional Nutrition</span>
+                <h1>Healthy Food That Works<br>Like <span>Medicine</span></h1>
             </div>
         </div>
     </header>
 
+    <section class="intro" id="about">
+        <div class="container reveal">
+            <div class="intro-content">
+                <p class="highlight">We believe the future of life lies in what we eat.</p>
+                <p>That’s why we create healthy-based foods using organic ingredients and powerful medicinal mushrooms — designed not just to fill your stomach, but to support your health, energy, and well-being every day.</p>
+                <p class="strong">This is not just food.<br>This is functional nutrition for a better life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
     <section class="trust-bar">
         <div class="container">
-            <div class="tb-grid">
-                <div class="tb-item">
-                    <svg viewBox="0 0 24 24"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"/></svg>
-                    <div>
+            <div class="trust-bar-items">
+                <div class="trust-item-mini">
+                    <span class="trust-icon">🔬</span>
+                    <div class="trust-text">
                         <strong>LAB TESTED</strong>
                         <span>For purity & safety</span>
                     </div>
                 </div>
-                <div class="tb-item">
-                    <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
-                    <div>
+                <div class="trust-item-mini">
+                    <span class="trust-icon">🌿</span>
+                    <div class="trust-text">
                         <strong>PLANT BASED</strong>
                         <span>Clean & conscious</span>
                     </div>
                 </div>
-                <div class="tb-item">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/></svg>
-                    <div>
+                <div class="trust-item-mini">
+                    <span class="trust-icon">🚫</span>
+                    <div class="trust-text">
                         <strong>NO PRESERVATIVES</strong>
                         <span>Only real ingredients</span>
+                    </div>
+                </div>
+                <div class="trust-item-mini">
+                    <span class="trust-icon">🇮🇳</span>
+                    <div class="trust-text">
+                        <strong>MADE IN INDIA</strong>
+                        <span>Thoughtfully crafted</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <section class="ingredients" id="ingredients">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>What We Do</h2>
+                <p>We create healthy foods and wellness products using natural medicinal mushrooms like Cordyceps mushroom, Lion’s Mane mushroom, Reishi mushroom, Shiitake mushroom, and Turkey Tail mushroom — designed to support your health, energy, and daily life naturally.</p>
+            </div>
+            
+            <div class="ingredients-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
+                <div class="ingredients-list reveal" style="background: transparent; border: none; padding: 0;">
+                    <h3 style="text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: var(--accent-gold);">Powerful Medicinal Mushrooms</h3>
+                    
+                    <div class="mushroom-feature-list">
+                        <!-- Cordyceps -->
+                        <div class="mushroom-feature-card style-energy">
+                            <div class="mf-img"><img src="assets/cordyceps.jpg" alt="Cordyceps"></div>
+                            <div class="mf-info">
+                                <h4>Cordyceps</h4>
+                                <span class="mf-tag">Energy & Stamina ⚡</span>
+                                <p>Boosts physical energy, endurance, and optimizes oxygen uptake for peak performance.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Lion's Mane -->
+                        <div class="mushroom-feature-card style-brain">
+                            <div class="mf-img"><img src="assets/lions_mane.jpg" alt="Lion's Mane"></div>
+                            <div class="mf-info">
+                                <h4>Lion’s Mane</h4>
+                                <span class="mf-tag">Brain Health 🧠</span>
+                                <p>Supports cognitive function, memory recall, and stimulates nerve growth factor (NGF).</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Reishi -->
+                        <div class="mushroom-feature-card style-calm">
+                            <div class="mf-img"><img src="assets/reishi.jpg" alt="Reishi"></div>
+                            <div class="mf-info">
+                                <h4>Reishi</h4>
+                                <span class="mf-tag">Calm & Balance 🌙</span>
+                                <p>Known as the "Mushroom of Immortality," it helps the body adapt to stress and promotes deep relaxation.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Shiitake -->
+                        <div class="mushroom-feature-card style-glow">
+                            <div class="mf-img"><img src="assets/shiitake.jpg" alt="Shiitake"></div>
+                            <div class="mf-info">
+                                <h4>Shiitake</h4>
+                                <span class="mf-tag">Heart & Skin Health ✨</span>
+                                <p>Rich in compounds that support cardiovascular health and promote a radiant, glowing complexion.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Turkey Tail -->
+                        <div class="mushroom-feature-card style-immunity">
+                            <div class="mf-img"><img src="assets/turkey_tail.jpg" alt="Turkey Tail"></div>
+                            <div class="mf-info">
+                                <h4>Turkey Tail</h4>
+                                <span class="mf-tag">Gut & Immunity 🛡️</span>
+                                <p>A powerhouse of antioxidants and prebiotics that fortify the gut microbiome and immune system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <section class="products" id="products">
         <div class="container">
             <div class="section-header reveal">
                 <h2 id="verify-header-123">Our Product Range</h2>
+                <p>Curated functional nutrition for your modern lifestyle.</p>
             </div>
-            <div class="product-grid editorial-grid">
-                <!-- Card 1: Focus Chocolate (Dark Brown) -->
-                <div class="product-card editorial-card theme-brown reveal">
-                    <div class="ec-image">
-                        <img src="assets/choco_bar.png" alt="Focus Chocolate">
-                    </div>
-                    <div class="ec-content">
-                        <h4>MycoHaven</h4>
-                        <h3>FOCUS<br>CHOCOLATE</h3>
-                        <p class="ec-subtitle">Lion's Mane</p>
-                        <p class="ec-desc">Enhances focus and mental clarity</p>
-                    </div>
-                </div>
-
-                <!-- Card 2: Calm Chocolate (Dark Green) -->
-                <div class="product-card editorial-card theme-green reveal" style="transition-delay: 0.1s">
-                    <div class="ec-image">
-                        <img src="assets/lions_mane_truffles.png" alt="Calm Chocolate">
-                    </div>
-                    <div class="ec-content">
-                        <h4>MycoHaven</h4>
-                        <h3>CALM<br>CHOCOLATE</h3>
-                        <p class="ec-subtitle">Reishi</p>
-                        <p class="ec-desc">Promotes relaxation and better sleep</p>
+            <div class="product-grid-premium">
+                <!-- Focus Chocolate -->
+                <div class="product-card-rect reveal style-focus">
+                    <div class="card-bg-overlay"></div>
+                    <div class="pc-content">
+                        <div class="pc-img-box">
+                            <img src="assets/mushroom_chocolates.png" alt="Focus Chocolate">
+                        </div>
+                        <div class="pc-text">
+                            <span class="pc-category">FOCUS CHOCOLATE</span>
+                            <h3>Lion's Mane</h3>
+                            <p>Enhances focus and mental clarity for deep work.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Card 3: Energy Bites (Beige) -->
-                <div class="product-card editorial-card theme-beige reveal" style="transition-delay: 0.2s">
-                    <div class="ec-image">
-                        <img src="assets/reishi_snacks.png" alt="Energy Bites">
-                    </div>
-                    <div class="ec-content">
-                        <h4>MycoHaven</h4>
-                        <h3>ENERGY<br>BITES</h3>
-                        <p class="ec-subtitle">Cordyceps</p>
-                        <p class="ec-desc">Natural energy and stamina</p>
-                    </div>
-                </div>
-
-                <!-- Card 4: Daily Coffee (Beige) -->
-                <div class="product-card editorial-card theme-beige reveal" style="transition-delay: 0.3s">
-                    <div class="ec-image">
-                        <img src="assets/cordyceps.jpg" alt="Daily Coffee">
-                    </div>
-                    <div class="ec-content">
-                        <h4>MycoHaven</h4>
-                        <h3>DAILY<br>COFFEE</h3>
-                        <p class="ec-subtitle">Mushroom Blend</p>
-                        <p class="ec-desc">Boosts immunity and reduces stress</p>
+                <!-- Calm Chocolate -->
+                <div class="product-card-rect reveal style-calm-dark" style="transition-delay: 0.1s">
+                    <div class="card-bg-overlay"></div>
+                    <div class="pc-content">
+                        <div class="pc-img-box">
+                            <img src="assets/choco_bar.png" alt="Calm Chocolate">
+                        </div>
+                        <div class="pc-text">
+                            <span class="pc-category">CALM CHOCOLATE</span>
+                            <h3>Reishi</h3>
+                            <p>Promotes relaxation and better restorative sleep.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Card 5: Wellness Gummies (Beige) -->
-                <div class="product-card editorial-card theme-beige reveal" style="transition-delay: 0.4s">
-                    <div class="ec-image">
-                        <img src="assets/turkey_tail.jpg" alt="Wellness Gummies">
+                <!-- Energy Bites -->
+                <div class="product-card-rect reveal style-energy-bites" style="transition-delay: 0.2s">
+                    <div class="card-bg-overlay"></div>
+                    <div class="pc-content">
+                        <div class="pc-img-box">
+                            <img src="assets/reishi_snacks.png" alt="Energy Bites">
+                        </div>
+                        <div class="pc-text">
+                            <span class="pc-category">ENERGY BITES</span>
+                            <h3>Cordyceps</h3>
+                            <p>Natural energy and stamina for peak performance.</p>
+                        </div>
                     </div>
-                    <div class="ec-content">
-                        <h4>MycoHaven</h4>
-                        <h3>WELLNESS<br>GUMMIES</h3>
-                        <p class="ec-subtitle">Multi Mushroom</p>
-                        <p class="ec-desc">Everyday balance and immunity</p>
+                </div>
+
+                <!-- Daily Coffee -->
+                <div class="product-card-rect reveal style-coffee" style="transition-delay: 0.3s">
+                    <div class="card-bg-overlay"></div>
+                    <div class="pc-content">
+                        <div class="pc-img-box">
+                            <img src="assets/shiitake.jpg" alt="Daily Coffee">
+                        </div>
+                        <div class="pc-text">
+                            <span class="pc-category">DAILY COFFEE</span>
+                            <h3>Mushroom Blend</h3>
+                            <p>Boosts immunity and reduces daily stress.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wellness Gummies -->
+                <div class="product-card-rect reveal style-gummies" style="transition-delay: 0.4s">
+                    <div class="card-bg-overlay"></div>
+                    <div class="pc-content">
+                        <div class="pc-img-box">
+                            <img src="assets/cordyceps.jpg" alt="Wellness Gummies">
+                        </div>
+                        <div class="pc-text">
+                            <span class="pc-category">WELLNESS GUMMIES</span>
+                            <h3>Multi Mushroom</h3>
+                            <p>Everyday balance and immune system defense.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="info-split" id="about">
-        <div class="info-left reveal">
-            <div class="info-content-box">
-                <h2>ABOUT MYCOHAVEN</h2>
-                <p>We combine the wisdom of nature with modern research to create delicious products that support your mind and body.</p>
-                <div class="info-icons">
-                    <div class="icon-item">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                        <span>NATURE<br>Inspired</span>
-                    </div>
-                    <div class="icon-item">
-                        <svg viewBox="0 0 24 24"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"/></svg>
-                        <span>SCIENCE<br>Backed</span>
-                    </div>
+    <section class="trust" id="trust">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Trust & Credibility</h2>
+                <p>Backed by science, rooted in nature.</p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-item reveal">
+                    <h3>Biotechnology Background</h3>
+                    <p>Formulated with deep scientific understanding to ensure maximum bioavailability and effectiveness.</p>
+                </div>
+                <div class="trust-item reveal" style="transition-delay: 0.1s">
+                    <h3>13+ Mushroom Species</h3>
+                    <p>Extensive experience and research across a wide variety of functional and medicinal fungi.</p>
+                </div>
+                <div class="trust-item reveal" style="transition-delay: 0.2s">
+                    <h3>Research & Innovation</h3>
+                    <p>A constant focus on advancing functional nutrition and developing cutting-edge formulations.</p>
                 </div>
             </div>
-            <div class="info-image-bottom">
-                <img src="assets/lions_mane.jpg" alt="Lion's Mane Mushrooms">
+        </div>
+    </section>
+
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-list reveal">
+                    <h2>Why Choose Us</h2>
+                    <ul>
+                        <li>Organic & Natural Ingredients</li>
+                        <li>Science-Based Formulations</li>
+                        <li>Medicinal Mushroom Expertise</li>
+                        <li>Sustainable & Eco-Friendly</li>
+                        <li>Innovation-Driven Startup</li>
+                    </ul>
+                </div>
+                
+                <div class="mission-vision reveal" style="transition-delay: 0.2s">
+                    <h3>Our Mission</h3>
+                    <p>Our mission is to help people live better lives through better food — natural, safe, and made with care for your health and future.</p>
+                    
+                    <h3>Our Vision</h3>
+                    <p>Our vision is to lead a new generation of organic and functional foods that support both human health and a sustainable planet.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="info-right reveal" style="transition-delay: 0.2s">
-            <div class="info-content-box dark">
-                <h2>WHY MUSHROOMS?</h2>
-                <p>Functional mushrooms have been used for centuries to support wellness, focus, stress relief, immune immunity and more.</p>
-                
-                <div class="mushroom-list">
-                    <div class="m-item">
-                        <img src="assets/lions_mane.jpg" alt="Lion's Mane">
-                        <div>
-                            <h4>LION'S MANE</h4>
-                            <p>Focus • Memory • Clarity</p>
-                        </div>
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>The Founding Team</h2>
+                <p>Meet the visionaries behind MycoHaven.</p>
+            </div>
+            <div class="team-grid">
+                <!-- Kiran Kumar S -->
+                <div class="team-member reveal">
+                    <div class="team-info">
+                        <h3>Kiran Kumar S</h3>
+                        <span class="role">Founder & CEO</span>
+                        <p class="bio">Biotechnologist (B.Tech Biotech) leading formulation R&D with specialized expertise in microbial fermentation and bioprocess engineering, cell culture, and mushroom cultivation.</p>
+                        <a href="https://www.linkedin.com/in/kiran-kumar-5b5590253" target="_blank" class="linkedin-link">
+                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            LinkedIn Profile
+                        </a>
                     </div>
-                    <div class="m-item">
-                        <img src="assets/reishi.jpg" alt="Reishi">
-                        <div>
-                            <h4>REISHI</h4>
-                            <p>Calm • Sleep • Stress Relief</p>
-                        </div>
-                    </div>
-                    <div class="m-item">
-                        <img src="assets/cordyceps.jpg" alt="Cordyceps">
-                        <div>
-                            <h4>CORDYCEPS</h4>
-                            <p>Energy • Stamina • Endurance</p>
-                        </div>
+                </div>
+                <!-- Suresh R -->
+                <div class="team-member reveal" style="transition-delay: 0.1s">
+                    <div class="team-info">
+                        <h3>Suresh R</h3>
+                        <span class="role">Director (Farmer)</span>
+                        <p class="bio">Bringing foundational agricultural expertise and a deep connection to sustainable farming practices.</p>
                     </div>
                 </div>
             </div>
