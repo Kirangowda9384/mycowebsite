@@ -148,6 +148,129 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Global function for expandable cards
-window.toggleSubProducts = function(card) {
-    card.classList.toggle('expanded');
+window.toggleSubProducts = function(cardElement) {
+    cardElement.classList.toggle('expanded');
 };
+
+// 6. Reviews & Feedback System
+document.addEventListener("DOMContentLoaded", () => {
+    const starRating = document.getElementById('starRating');
+    const reviewRatingInput = document.getElementById('reviewRating');
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewsList = document.getElementById('reviewsList');
+
+    if (!starRating || !reviewForm || !reviewsList) return;
+
+    // Default Mock Reviews
+    const defaultReviews = [
+        {
+            name: "Sarah L.",
+            rating: 5,
+            text: "The Focus Chocolate is incredible. I've completely replaced my afternoon coffee with it. Highly recommend for deep work sessions!",
+            date: new Date(Date.now() - 86400000 * 2).toLocaleDateString() // 2 days ago
+        },
+        {
+            name: "Marcus T.",
+            rating: 5,
+            text: "Loving the Reishi snacks before bed. They actually help me wind down and sleep better.",
+            date: new Date(Date.now() - 86400000 * 5).toLocaleDateString() // 5 days ago
+        }
+    ];
+
+    // Load reviews from localStorage or use defaults
+    let reviews = JSON.parse(localStorage.getItem('mycohaven_reviews'));
+    if (!reviews || reviews.length === 0) {
+        reviews = defaultReviews;
+        localStorage.setItem('mycohaven_reviews', JSON.stringify(reviews));
+    }
+
+    // Function to generate Star HTML
+    const generateStars = (rating) => {
+        let starsHtml = '';
+        for (let i = 1; i <= 5; i++) {
+            starsHtml += i <= rating ? '★' : '☆';
+        }
+        return starsHtml;
+    };
+
+    // Render reviews
+    const renderReviews = () => {
+        reviewsList.innerHTML = '';
+        // Reverse to show newest first
+        [...reviews].reverse().forEach(review => {
+            const card = document.createElement('div');
+            card.className = 'review-card reveal active';
+            card.innerHTML = `
+                <div class="review-header">
+                    <span class="reviewer-name">${review.name}</span>
+                    <span class="review-date">${review.date}</span>
+                </div>
+                <div class="review-stars">${generateStars(review.rating)}</div>
+                <div class="review-body">${review.text}</div>
+            `;
+            reviewsList.appendChild(card);
+        });
+    };
+
+    renderReviews();
+
+    // Star Rating Interaction
+    const stars = starRating.querySelectorAll('.star');
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const value = parseInt(star.getAttribute('data-value'));
+            reviewRatingInput.value = value;
+            
+            // Update UI
+            stars.forEach(s => {
+                if (parseInt(s.getAttribute('data-value')) <= value) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    // Form Submission
+    reviewForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const nameInput = document.getElementById('reviewName');
+        const textInput = document.getElementById('reviewText');
+        
+        const newReview = {
+            name: nameInput.value.trim(),
+            rating: parseInt(reviewRatingInput.value),
+            text: textInput.value.trim(),
+            date: new Date().toLocaleDateString()
+        };
+
+        // Add to array
+        reviews.push(newReview);
+        
+        // Save to localStorage
+        localStorage.setItem('mycohaven_reviews', JSON.stringify(reviews));
+        
+        // Re-render
+        renderReviews();
+        
+        // Reset form
+        reviewForm.reset();
+        
+        // Reset stars to 5 visually
+        stars.forEach(s => s.classList.add('active'));
+        reviewRatingInput.value = 5;
+        
+        // Show success
+        const submitBtn = reviewForm.querySelector('.review-submit');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = "Thank you!";
+        submitBtn.style.backgroundColor = "var(--accent-green)";
+        
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.backgroundColor = "";
+        }, 3000);
+    });
+});
