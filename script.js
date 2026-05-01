@@ -161,25 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!starRating || !reviewForm || !reviewsList) return;
 
-    // Default Mock Reviews
-    const defaultReviews = [
-        {
-            name: "Sarah L.",
-            rating: 5,
-            text: "The Focus Chocolate is incredible. I've completely replaced my afternoon coffee with it. Highly recommend for deep work sessions!",
-            date: new Date(Date.now() - 86400000 * 2).toLocaleDateString() // 2 days ago
-        },
-        {
-            name: "Marcus T.",
-            rating: 5,
-            text: "Loving the Reishi snacks before bed. They actually help me wind down and sleep better.",
-            date: new Date(Date.now() - 86400000 * 5).toLocaleDateString() // 5 days ago
-        }
-    ];
+    // Default Mock Reviews - Removed to allow for real feedback only
+    const defaultReviews = [];
 
     // Load reviews from localStorage or use defaults
     let reviews = JSON.parse(localStorage.getItem('mycohaven_reviews'));
-    if (!reviews || reviews.length === 0) {
+    if (!reviews) {
         reviews = defaultReviews;
         localStorage.setItem('mycohaven_reviews', JSON.stringify(reviews));
     }
@@ -196,6 +183,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render reviews
     const renderReviews = () => {
         reviewsList.innerHTML = '';
+        
+        if (reviews.length === 0) {
+            reviewsList.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 20px; font-style: italic;">No reviews yet. Be the first to share your experience!</p>';
+            return;
+        }
+
         // Reverse to show newest first
         [...reviews].reverse().forEach(review => {
             const card = document.createElement('div');
