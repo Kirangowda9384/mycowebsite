@@ -1083,14 +1083,32 @@ footer {
 }
 
 .pc-img-wrapper {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 20px;
+  width: 140px; /* Increased size */
+  height: 140px;
+  margin: 0 auto 25px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid var(--accent-gold);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  border: 3px solid var(--accent-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
   flex-shrink: 0;
+  position: relative;
+}
+
+.pc-img-wrapper::after {
+  content: 'MYCOHAVEN';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(212, 175, 55, 0.9);
+  color: #000;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .pc-img-wrapper img {
@@ -1101,7 +1119,12 @@ footer {
 }
 
 .product-card:hover .pc-img-wrapper img {
-  transform: scale(1.1);
+  transform: scale(1.15);
+}
+
+.product-card:hover .pc-img-wrapper {
+  border-color: #fff;
+  box-shadow: 0 0 30px var(--accent-gold);
 }
 
 .expandable-card .product-info {
