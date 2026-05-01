@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css?v=1.5">
+    <link rel="stylesheet" href="styles.css?v=1.6">
 </head>
 <body>
     <nav class="navbar">
@@ -171,79 +171,59 @@
                 <h2 id="verify-header-123">Our Product Range</h2>
                 <p>Curated functional nutrition for your modern lifestyle.</p>
             </div>
-            <div class="product-grid-premium">
-                <!-- Focus Chocolate -->
-                <div class="product-card-rect reveal style-focus">
-                    <div class="card-bg-overlay"></div>
-                    <div class="pc-content">
-                        <div class="pc-img-box">
-                            <img src="assets/mushroom_chocolates.png" alt="Focus Chocolate">
-                        </div>
-                        <div class="pc-text">
-                            <span class="pc-category">FOCUS CHOCOLATE</span>
-                            <h3>Lion's Mane</h3>
-                            <p>Enhances focus and mental clarity for deep work.</p>
-                        </div>
+            <div class="product-grid">
+                <div class="product-card reveal">
+                    <div class="pc-img-wrapper">
+                        <img src="assets/choco_bar.png" alt="Mushroom Chocolates">
+                    </div>
+                    <div class="product-info">
+                        <h3>Mushroom Chocolates</h3>
                     </div>
                 </div>
 
-                <!-- Calm Chocolate -->
-                <div class="product-card-rect reveal style-calm-dark" style="transition-delay: 0.1s">
-                    <div class="card-bg-overlay"></div>
-                    <div class="pc-content">
-                        <div class="pc-img-box">
-                            <img src="assets/choco_bar.png" alt="Calm Chocolate">
-                        </div>
-                        <div class="pc-text">
-                            <span class="pc-category">CALM CHOCOLATE</span>
-                            <h3>Reishi</h3>
-                            <p>Promotes relaxation and better restorative sleep.</p>
-                        </div>
+                <div class="product-card reveal" style="transition-delay: 0.1s">
+                    <div class="pc-img-wrapper">
+                        <img src="assets/reishi_snacks.png" alt="Healthy Mushroom Snacks">
+                    </div>
+                    <div class="product-info">
+                        <h3>Healthy Mushroom Snacks</h3>
                     </div>
                 </div>
 
-                <!-- Energy Bites -->
-                <div class="product-card-rect reveal style-energy-bites" style="transition-delay: 0.2s">
-                    <div class="card-bg-overlay"></div>
-                    <div class="pc-content">
-                        <div class="pc-img-box">
-                            <img src="assets/reishi_snacks.png" alt="Energy Bites">
-                        </div>
-                        <div class="pc-text">
-                            <span class="pc-category">ENERGY BITES</span>
-                            <h3>Cordyceps</h3>
-                            <p>Natural energy and stamina for peak performance.</p>
-                        </div>
+                <div class="product-card reveal" style="transition-delay: 0.2s">
+                    <div class="pc-img-wrapper">
+                        <img src="assets/reishi.jpg" alt="Mushroom Powders">
+                    </div>
+                    <div class="product-info">
+                        <h3>Mushroom Powders</h3>
                     </div>
                 </div>
 
-                <!-- Daily Coffee -->
-                <div class="product-card-rect reveal style-coffee" style="transition-delay: 0.3s">
-                    <div class="card-bg-overlay"></div>
-                    <div class="pc-content">
-                        <div class="pc-img-box">
-                            <img src="assets/shiitake.jpg" alt="Daily Coffee">
-                        </div>
-                        <div class="pc-text">
-                            <span class="pc-category">DAILY COFFEE</span>
-                            <h3>Mushroom Blend</h3>
-                            <p>Boosts immunity and reduces daily stress.</p>
-                        </div>
+                <div class="product-card reveal" style="transition-delay: 0.3s">
+                    <div class="pc-img-wrapper">
+                        <img src="assets/shiitake.jpg" alt="Skincare Products">
+                    </div>
+                    <div class="product-info">
+                        <h3>Skincare Products</h3>
                     </div>
                 </div>
 
-                <!-- Wellness Gummies -->
-                <div class="product-card-rect reveal style-gummies" style="transition-delay: 0.4s">
-                    <div class="card-bg-overlay"></div>
-                    <div class="pc-content">
-                        <div class="pc-img-box">
-                            <img src="assets/cordyceps.jpg" alt="Wellness Gummies">
+                <div class="product-card reveal expandable-card" style="transition-delay: 0.4s" onclick="toggleSubProducts(this)">
+                    <div class="pc-img-wrapper">
+                        <img src="assets/cordyceps.jpg" alt="Premium Liquid Extract">
+                    </div>
+                    <div class="product-info">
+                        <div class="expand-header">
+                            <h3>Premium Liquid Extract</h3>
+                            <span class="expand-icon">+</span>
                         </div>
-                        <div class="pc-text">
-                            <span class="pc-category">WELLNESS GUMMIES</span>
-                            <h3>Multi Mushroom</h3>
-                            <p>Everyday balance and immune system defense.</p>
-                        </div>
+                        <ul class="sub-products-list">
+                            <li>Cordyceps Militaris Potent Extract</li>
+                            <li>Lion's Mane Liquid Extract</li>
+                            <li>Reishi Liquid Extract</li>
+                            <li>Turkey Tail Liquid Extract</li>
+                            <li>Shiitake Liquid Extract</li>
+                        </ul>
                     </div>
                 </div>
             </div>
