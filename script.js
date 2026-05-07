@@ -267,3 +267,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
     });
 });
+
+// 7. Honey Cultivation Modal Logic
+function openHoneyModal() {
+    const modal = document.getElementById('honeyModal');
+    const video = document.getElementById('honeyVideo');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        if (video) video.play();
+    }
+}
+
+function closeHoneyModal() {
+    const modal = document.getElementById('honeyModal');
+    const video = document.getElementById('honeyVideo');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        if (video) {
+            video.pause();
+            video.currentTime = 0; // Reset video
+        }
+    }
+}
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('honeyModal');
+    if (event.target == modal) {
+        closeHoneyModal();
+    }
+}
