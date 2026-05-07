@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css?v=2.1">
+    <link rel="stylesheet" href="styles.css?v=2.2">
 </head>
 <body>
     <nav class="navbar">
@@ -225,12 +225,13 @@
                     </div>
                 </div>
 
-                <div class="product-card reveal" style="transition-delay: 0.4s">
+                <div class="product-card reveal" style="transition-delay: 0.4s" onclick="openHoneyModal()">
                     <div class="pc-img-wrapper">
                         <img src="assets/honey.png" alt="Pure Natural Honey">
                     </div>
                     <div class="product-info">
                         <h3>Pure Natural Honey</h3>
+                        <span class="click-hint">Click to see cultivation 🍯</span>
                     </div>
                 </div>
 
@@ -400,6 +401,29 @@
             <p>&copy; 2026 MycoHaven. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Honey Cultivation Modal -->
+    <div id="honeyModal" class="media-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeHoneyModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Our Honey Cultivation Journey</h2>
+                <p>Pure, raw, and harvested with care.</p>
+            </div>
+            <div class="modal-body">
+                <div class="main-video">
+                    <video id="honeyVideo" controls>
+                        <source src="assets/honey_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="media-gallery">
+                    <img src="assets/honey1.jpeg" alt="Cultivation Photo 1">
+                    <img src="assets/honey2.jpeg" alt="Cultivation Photo 2">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js?v=1.2"></script>
 </body>
