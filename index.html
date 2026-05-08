@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css?v=2.3">
+    <link rel="stylesheet" href="styles.css?v=2.4">
 </head>
 <body>
     <nav class="navbar">
@@ -25,7 +25,7 @@
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#ingredients">Ingredients</a>
-                <a href="#products">Products</a>
+                <a href="#shop">Shop</a>
                 <a href="#trust">Why Us</a>
                 <a href="#reviews">Reviews</a>
             </div>
@@ -182,68 +182,86 @@
 
 
 
-    <section class="products" id="products">
+    <section class="products" id="shop">
         <div class="container">
             <div class="section-header reveal">
-                <h2 id="verify-header-123">Our Product Range</h2>
-                <p>Curated functional nutrition for your modern lifestyle.</p>
+                <h2 id="verify-header-123">Our Shop</h2>
+                <p>Premium functional nutrition for your daily wellness. Click 'Buy' to order directly via WhatsApp.</p>
             </div>
             <div class="product-grid">
+                <!-- Mushroom Chocolates -->
                 <div class="product-card reveal">
                     <div class="pc-img-wrapper">
                         <img src="assets/choco_bar.png" alt="Mushroom Chocolates">
                     </div>
                     <div class="product-info">
                         <h3>Mushroom Chocolates</h3>
+                        <p class="product-price">₹499</p>
+                        <a href="https://wa.me/919384399804?text=Hi MycoHaven, I want to buy Mushroom Chocolates (₹499). Please let me know how to proceed." target="_blank" class="buy-btn">Buy via WhatsApp 🛒</a>
                     </div>
                 </div>
 
+                <!-- Healthy Mushroom Snacks -->
                 <div class="product-card reveal" style="transition-delay: 0.1s">
                     <div class="pc-img-wrapper">
                         <img src="assets/reishi_snacks.png" alt="Healthy Mushroom Snacks">
                     </div>
                     <div class="product-info">
                         <h3>Healthy Mushroom Snacks</h3>
+                        <p class="product-price">₹349</p>
+                        <a href="https://wa.me/919384399804?text=Hi MycoHaven, I want to buy Healthy Mushroom Snacks (₹349). Please let me know how to proceed." target="_blank" class="buy-btn">Buy via WhatsApp 🛒</a>
                     </div>
                 </div>
 
+                <!-- Mushroom Powders -->
                 <div class="product-card reveal" style="transition-delay: 0.2s">
                     <div class="pc-img-wrapper">
                         <img src="assets/reishi.jpg" alt="Mushroom Powders">
                     </div>
                     <div class="product-info">
                         <h3>Mushroom Powders</h3>
+                        <p class="product-price">₹899</p>
+                        <a href="https://wa.me/919384399804?text=Hi MycoHaven, I want to buy Mushroom Powders (₹899). Please let me know how to proceed." target="_blank" class="buy-btn">Buy via WhatsApp 🛒</a>
                     </div>
                 </div>
 
+                <!-- Skincare Products -->
                 <div class="product-card reveal" style="transition-delay: 0.3s">
                     <div class="pc-img-wrapper">
                         <img src="assets/shiitake.jpg" alt="Skincare Products">
                     </div>
                     <div class="product-info">
                         <h3>Skincare Products</h3>
+                        <p class="product-price">₹1,299</p>
+                        <a href="https://wa.me/919384399804?text=Hi MycoHaven, I want to buy Skincare Products (₹1,299). Please let me know how to proceed." target="_blank" class="buy-btn">Buy via WhatsApp 🛒</a>
                     </div>
                 </div>
 
-                <div class="product-card reveal" style="transition-delay: 0.4s" onclick="openHoneyModal()">
-                    <div class="pc-img-wrapper">
+                <!-- Pure Natural Honey -->
+                <div class="product-card reveal" style="transition-delay: 0.4s">
+                    <div class="pc-img-wrapper" onclick="openHoneyModal()">
                         <img src="assets/honey.png" alt="Pure Natural Honey">
+                        <div class="view-overlay">Click to see cultivation 🍯</div>
                     </div>
                     <div class="product-info">
                         <h3>Pure Natural Honey</h3>
-                        <span class="click-hint">Click to see cultivation 🍯</span>
+                        <p class="product-price">₹999 <span class="unit">(1 KG)</span></p>
+                        <a href="https://wa.me/919384399804?text=Hi MycoHaven, I want to buy 1KG Pure Natural Honey (₹999). Please let me know how to proceed." target="_blank" class="buy-btn">Buy via WhatsApp 🛒</a>
                     </div>
                 </div>
 
-                <div class="product-card reveal expandable-card" style="transition-delay: 0.5s" onclick="toggleSubProducts(this)">
-                    <div class="pc-img-wrapper">
+                <!-- Premium Liquid Extract -->
+                <div class="product-card reveal expandable-card" style="transition-delay: 0.5s">
+                    <div class="pc-img-wrapper" onclick="toggleSubProducts(this.parentElement)">
                         <img src="assets/cordyceps.jpg" alt="Premium Liquid Extract">
+                        <div class="view-overlay">Click to view all extracts +</div>
                     </div>
                     <div class="product-info">
-                        <div class="expand-header">
+                        <div class="expand-header" onclick="toggleSubProducts(this.parentElement.parentElement)">
                             <h3>Premium Liquid Extract</h3>
                             <span class="expand-icon">+</span>
                         </div>
+                        <p class="product-price">From ₹1,499</p>
                         <ul class="sub-products-list">
                             <li>Cordyceps Militaris Potent Extract</li>
                             <li>Lion's Mane Liquid Extract</li>
@@ -251,6 +269,7 @@
                             <li>Turkey Tail Liquid Extract</li>
                             <li>Shiitake Liquid Extract</li>
                         </ul>
+                        <a href="https://wa.me/919384399804?text=Hi MycoHaven, I want to buy Premium Liquid Extracts (from ₹1,499). Please let me know how to proceed." target="_blank" class="buy-btn">Buy via WhatsApp 🛒</a>
                     </div>
                 </div>
             </div>
