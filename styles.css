@@ -1760,6 +1760,15 @@ footer {
   font-weight: 600;
 }
 
+.original-price {
+  text-decoration: line-through;
+  font-size: 1rem;
+  color: #b84b4b;
+  margin-right: 10px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
 .product-price .unit {
   font-size: 0.9rem;
   color: var(--text-secondary);
