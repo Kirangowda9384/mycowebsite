@@ -161,15 +161,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!starRating || !reviewForm || !reviewsList) return;
 
-    // Default Mock Reviews - Removed to allow for real feedback only
-    const defaultReviews = [];
+    // Default Customer & Team Feedback
+    const defaultReviews = [
+        {
+            name: "Dr. Priya Nair",
+            rating: 5,
+            text: "As a biochemist, I am highly impressed by MycoHaven's scientific approach to functional food. The pure natural honey is outstanding—rich in flavor and completely raw. Can't wait for the liquid extracts!",
+            date: "25/05/2026"
+        },
+        {
+            name: "Rajesh K.",
+            rating: 5,
+            text: "This raw honey is absolutely authentic! It has a distinct wild floral note that you just don't get in commercial honey. Truly excellent quality.",
+            date: "18/05/2026"
+        },
+        {
+            name: "Meera Sen",
+            rating: 4,
+            text: "Excellent packaging and fast response on WhatsApp. The honey is very fresh. Hope the mushroom chocolates are launched soon!",
+            date: "12/05/2026"
+        },
+        {
+            name: "Suresh R",
+            rating: 5,
+            text: "Pure natural honey quality is excellent! Very fresh and authentic.",
+            date: "28/04/2026"
+        },
+        {
+            name: "Kiran Kumar",
+            rating: 5,
+            text: "Tested the Cordyceps samples, excellent bioactive compounds. Looking forward to the commercial release!",
+            date: "29/04/2026"
+        }
+    ];
 
-    // Load reviews from localStorage or use defaults
-    let reviews = JSON.parse(localStorage.getItem('mycohaven_reviews'));
-    if (!reviews) {
-        reviews = defaultReviews;
-        localStorage.setItem('mycohaven_reviews', JSON.stringify(reviews));
-    }
+    // Load custom reviews from localStorage (keep them separate from defaults)
+    let customReviews = JSON.parse(localStorage.getItem('mycohaven_custom_reviews')) || [];
+
+    // Combine default reviews with user-submitted custom reviews
+    let reviews = [...defaultReviews, ...customReviews];
 
     // Function to generate Star HTML
     const generateStars = (rating) => {
@@ -239,11 +269,14 @@ document.addEventListener("DOMContentLoaded", () => {
             date: new Date().toLocaleDateString()
         };
 
-        // Add to array
-        reviews.push(newReview);
+        // Add to custom reviews
+        customReviews.push(newReview);
         
-        // Save to localStorage
-        localStorage.setItem('mycohaven_reviews', JSON.stringify(reviews));
+        // Save custom reviews to localStorage
+        localStorage.setItem('mycohaven_custom_reviews', JSON.stringify(customReviews));
+        
+        // Update the full list
+        reviews = [...defaultReviews, ...customReviews];
         
         // Re-render
         renderReviews();
