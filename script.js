@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!starRating || !reviewForm || !reviewsList) return;
 
-    // Default Customer & Team Feedback
+    // Default Customer & Team Feedback (stored locally as base)
     const defaultReviews = [
         {
             name: "Dr. Priya Nair",
@@ -195,11 +195,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
-    // Load custom reviews from localStorage (keep them separate from defaults)
-    let customReviews = JSON.parse(localStorage.getItem('mycohaven_custom_reviews')) || [];
+    const STORAGE_KEY = 'mycohaven_public_reviews_prod_v1';
+    const API_GET_URL = `https://api.keyval.org/get/${STORAGE_KEY}`;
+    const API_SET_URL = `https://api.keyval.org/set/${STORAGE_KEY}`;
 
-    // Combine default reviews with user-submitted custom reviews
-    let reviews = [...defaultReviews, ...customReviews];
+    let customReviews = [];
+    let reviews = [...defaultReviews];
+
+    // Helper for fetch with timeout
+    const fetchWithTimeout = async (url, options = {}, timeout = 6000) => {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), timeout);
+        try {
+            const response = await fetch(url, { ...options, signal: controller.signal });
+            clearTimeout(id);
+            return response;
+        } catch (error) {
+            clearTimeout(id);
+            throw error;
+        }
+    };
 
     // Function to generate Star HTML
     const generateStars = (rating) => {
@@ -210,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return starsHtml;
     };
 
-    // Render reviews
+    // Render reviews to UI
     const renderReviews = () => {
         reviewsList.innerHTML = '';
         
@@ -235,7 +250,57 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    renderReviews();
+    // Main fetch reviews logic
+    const loadLiveReviews = async () => {
+        try {
+            // First load from localStorage to show something immediately (instant load)
+            customReviews = JSON.parse(localStorage.getItem('mycohaven_custom_reviews')) || [];
+            reviews = [...defaultReviews, ...customReviews];
+            renderReviews();
+
+            // Fetch latest reviews from global API
+            const response = await fetchWithTimeout(API_GET_URL);
+            if (response.ok) {
+                const text = await response.text();
+                let remoteReviews = [];
+                if (text && text.trim()) {
+                    try {
+                        const parsed = JSON.parse(text);
+                        if (Array.isArray(parsed)) {
+                            remoteReviews = parsed;
+                        }
+                    } catch (e) {
+                        console.warn("Could not parse remote reviews string:", e);
+                    }
+                }
+                
+                if (remoteReviews.length > 0) {
+                    customReviews = remoteReviews;
+                    
+                    // Merge local-only custom reviews to preserve user's local submissions
+                    const existingReviewKeys = new Set(customReviews.map(r => `${r.name}_${r.text.substring(0,20)}_${r.date}`));
+                    const localCustom = JSON.parse(localStorage.getItem('mycohaven_custom_reviews')) || [];
+                    localCustom.forEach(r => {
+                        const key = `${r.name}_${r.text.substring(0,20)}_${r.date}`;
+                        if (!existingReviewKeys.has(key)) {
+                            customReviews.push(r);
+                        }
+                    });
+
+                    // Save the merged list back to localStorage
+                    localStorage.setItem('mycohaven_custom_reviews', JSON.stringify(customReviews));
+                }
+                
+                reviews = [...defaultReviews, ...customReviews];
+                renderReviews();
+            }
+        } catch (err) {
+            console.warn("Failed to load live reviews from database, using cached local copy:", err);
+        }
+    };
+
+    // Run the loader immediately
+    loadLiveReviews();
 
     // Star Rating Interaction
     const stars = starRating.querySelectorAll('.star');
@@ -256,11 +321,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Form Submission
-    reviewForm.addEventListener('submit', (e) => {
+    reviewForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const nameInput = document.getElementById('reviewName');
         const textInput = document.getElementById('reviewText');
+        const submitBtn = reviewForm.querySelector('.review-submit');
         
         const newReview = {
             name: nameInput.value.trim(),
@@ -269,35 +335,80 @@ document.addEventListener("DOMContentLoaded", () => {
             date: new Date().toLocaleDateString()
         };
 
-        // Add to custom reviews
-        customReviews.push(newReview);
-        
-        // Save custom reviews to localStorage
-        localStorage.setItem('mycohaven_custom_reviews', JSON.stringify(customReviews));
-        
-        // Update the full list
-        reviews = [...defaultReviews, ...customReviews];
-        
-        // Re-render
-        renderReviews();
-        
-        // Reset form
-        reviewForm.reset();
-        
-        // Reset stars to 5 visually
-        stars.forEach(s => s.classList.add('active'));
-        reviewRatingInput.value = 5;
-        
-        // Show success
-        const submitBtn = reviewForm.querySelector('.review-submit');
+        // Disable button & show loading state
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = "Thank you!";
-        submitBtn.style.backgroundColor = "var(--accent-green)";
-        
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.style.backgroundColor = "";
-        }, 3000);
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Publishing...";
+
+        try {
+            // Fetch latest reviews first to avoid overwriting other submissions
+            let latestRemote = [];
+            try {
+                const getResp = await fetchWithTimeout(API_GET_URL);
+                if (getResp.ok) {
+                    const text = await getResp.text();
+                    if (text && text.trim()) {
+                        const parsed = JSON.parse(text);
+                        if (Array.isArray(parsed)) {
+                            latestRemote = parsed;
+                        }
+                    }
+                }
+            } catch (e) {
+                console.warn("Failed to fetch latest remote reviews before submit, appending to cached local copy:", e);
+                latestRemote = customReviews;
+            }
+
+            // Append the new review
+            latestRemote.push(newReview);
+            customReviews = latestRemote;
+
+            // Save custom reviews to localStorage
+            localStorage.setItem('mycohaven_custom_reviews', JSON.stringify(customReviews));
+
+            // Sync with global API
+            const encodedVal = encodeURIComponent(JSON.stringify(customReviews));
+            const setResp = await fetchWithTimeout(`${API_SET_URL}/${encodedVal}`);
+            if (!setResp.ok) {
+                throw new Error(`Failed to upload feedback: ${setResp.status}`);
+            }
+
+            // Update UI list and re-render
+            reviews = [...defaultReviews, ...customReviews];
+            renderReviews();
+
+            // Reset form
+            reviewForm.reset();
+            stars.forEach(s => s.classList.add('active'));
+            reviewRatingInput.value = 5;
+
+            // Success feedback
+            submitBtn.textContent = "Feedback Live!";
+            submitBtn.style.backgroundColor = "var(--accent-green)";
+        } catch (err) {
+            console.error("Failed to post live review:", err);
+
+            // Local fallback save so the user doesn't lose their input
+            if (!customReviews.some(r => r.name === newReview.name && r.text === newReview.text)) {
+                customReviews.push(newReview);
+                localStorage.setItem('mycohaven_custom_reviews', JSON.stringify(customReviews));
+            }
+            reviews = [...defaultReviews, ...customReviews];
+            renderReviews();
+
+            reviewForm.reset();
+            stars.forEach(s => s.classList.add('active'));
+            reviewRatingInput.value = 5;
+
+            submitBtn.textContent = "Submitted!";
+            submitBtn.style.backgroundColor = "var(--accent-gold)";
+        } finally {
+            submitBtn.disabled = false;
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.backgroundColor = "";
+            }, 3000);
+        }
     });
 });
 
